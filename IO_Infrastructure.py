@@ -68,7 +68,7 @@ def dir_setup(debug = True):
 ###### Anisotropy
 #######################################################################
     if not os.path.exists("Images/Waveforms/D9.6-3D/Anisotropy"):
-        os.makedirs("Images/Waveforms/D9.6-3D/Total/Anisotropy")
+        os.makedirs("Images/Waveforms/D9.6-3D/Anisotropy")
 #######################################################################
 ##### D15-3D
 #######################################################################
