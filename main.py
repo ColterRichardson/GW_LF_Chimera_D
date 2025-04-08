@@ -35,9 +35,9 @@ plot_D96(time_09,
          hp_t_09, hc_t_09, 
          ap_09, ac_09, LN_09, 
          theta_09, phi_09, 
-         D96 = False, 
+         D96 = True, 
          Flow = True, Neutrino = True, Total = True, Anisotropy = True, 
-         debug = False)
+         debug = True)
 
 plot_D15(time_15, 
          hp_f_15, hc_f_15, 
@@ -45,7 +45,7 @@ plot_D15(time_15,
          hp_t_15, hc_t_15, 
          ap_15, ac_15, LN_15, 
          theta_15, phi_15, 
-         D15 = False,
+         D15 = True,
          Flow = True, Neutrino = True, Total = True, Anisotropy = True, 
          debug = True)
 
@@ -55,7 +55,7 @@ plot_D25(time_25,
          hp_t_25, hc_t_25, 
          ap_25, ac_25, LN_25, 
          theta_25, phi_25, 
-         D25 = False, 
+         D25 = True, 
          Flow = True, Neutrino = True, Total = True, Anisotropy = True, 
          debug = True)
 
@@ -75,26 +75,26 @@ plot_all(time_09,
              hp_t_25, hc_t_25,
              theta_25, phi_25,  
              Flow = True, Neutrino = True, Total = True, 
-             debug = False)
+             debug = True)
 
 extract_D96(hp_f_09, hc_f_09, 
             hp_n_09, hc_n_09, 
             hp_t_09, hc_t_09, 
-            D96 = False, 
+            D96 = True, 
             Flow = True, Neutrino = True, Total = True, 
             debug = True)
 
 extract_D15(hp_f_15, hc_f_15, 
             hp_n_15, hc_n_15, 
             hp_t_15, hc_t_15, 
-            D15 = False, 
+            D15 = True, 
             Flow = True, Neutrino = True, Total = True, 
             debug = True)
 
 extract_D25(hp_f_25, hc_f_25, 
             hp_n_25, hc_n_25, 
             hp_t_25, hc_t_25, 
-            D25 = False, 
+            D25 = True, 
             Flow = True, Neutrino = True, Total = True, 
             debug = True)
 
@@ -105,7 +105,7 @@ write_D96(time_09,
               theta_09, phi_09,
               output_frequency = 16384,
               output_distance = 10, 
-              D96 = False, 
+              D96 = True, 
               Flow = True, Neutrino = True, Total = True, 
               debug = True)
 
@@ -116,7 +116,7 @@ write_D15(time_15,
               theta_15, phi_15,
               output_frequency = 16384,
               output_distance = 10, 
-              D15 = False, 
+              D15 = True, 
               Flow = True, Neutrino = True, Total = True, 
               debug = True)
 
@@ -127,7 +127,7 @@ write_D25(time_25,
               theta_25, phi_25,
               output_frequency = 16384,
               output_distance = 10, 
-              D25 = False, 
+              D25 = True, 
               Flow = True, Neutrino = True, Total = True, 
               debug = True)
 
@@ -143,31 +143,31 @@ SNR = plot_ASD(time_09,
                frequency = 16384,
                f_tail = 1/2,
                output_distance = 1,
-               debug = False) 
+               debug = True) 
 
 fit_D96(time_09, 
         hp_f_09, hc_f_09, 
         hp_n_09, hc_n_09, 
         hp_t_09, hc_t_09, 
         theta_09, phi_09, 
-        D96 = False, 
-        debug = False)
+        D96 = True, 
+        debug = True)
 
 fit_D15(time_15, 
         hp_f_15, hc_f_15, 
         hp_n_15, hc_n_15, 
         hp_t_15, hc_t_15, 
         theta_15, phi_15, 
-        D15 = False, 
-        debug = False)
+        D15 = True, 
+        debug = True)
 
 fit_D25(time_15, 
         hp_f_15, hc_f_15, 
         hp_n_15, hc_n_15, 
         hp_t_15, hc_t_15, 
         theta_15, phi_15, 
-        D25 = False, 
-        debug = False)
+        D25 = True, 
+        debug = True)
 
 
-logistic_plot(debug = False)
+logistic_plot(debug = True)
