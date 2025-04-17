@@ -6,3 +6,5 @@ Data/Memory
 Data/Waveforms
 
 Images
+
+__pycache__
