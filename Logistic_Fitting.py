@@ -42,32 +42,30 @@ def fit_D96(time_09,
             theta_09, phi_09, 
             D96 = True, 
             debug = False):
-
-    t0_09_p_f    = np.empty((len(theta_09), len(phi_09)))
-    k_09_p_f     = np.empty((len(theta_09), len(phi_09)))
-    L_09_p_f     = np.empty((len(theta_09), len(phi_09)))
-
-    t0_09_c_f    = np.empty((len(theta_09), len(phi_09)))
-    k_09_c_f     = np.empty((len(theta_09), len(phi_09)))
-    L_09_c_f     = np.empty((len(theta_09), len(phi_09)))
-
-    t0_09_p_n    = np.empty((len(theta_09), len(phi_09)))
-    k_09_p_n     = np.empty((len(theta_09), len(phi_09)))
-    L_09_p_n     = np.empty((len(theta_09), len(phi_09)))
-
-    t0_09_c_n    = np.empty((len(theta_09), len(phi_09)))
-    k_09_c_n     = np.empty((len(theta_09), len(phi_09)))
-    L_09_c_n     = np.empty((len(theta_09), len(phi_09)))
-
-    t0_09_c_t    = np.empty((len(theta_09), len(phi_09)))
-    k_09_c_t     = np.empty((len(theta_09), len(phi_09)))
-    L_09_c_t     = np.empty((len(theta_09), len(phi_09)))
-
-    t0_09_p_t    = np.empty((len(theta_09), len(phi_09)))
-    k_09_p_t     = np.empty((len(theta_09), len(phi_09)))
-    L_09_p_t     = np.empty((len(theta_09), len(phi_09)))
-
     if D96:
+        t0_09_p_f    = np.empty((len(theta_09), len(phi_09)))
+        k_09_p_f     = np.empty((len(theta_09), len(phi_09)))
+        L_09_p_f     = np.empty((len(theta_09), len(phi_09)))
+
+        t0_09_c_f    = np.empty((len(theta_09), len(phi_09)))
+        k_09_c_f     = np.empty((len(theta_09), len(phi_09)))
+        L_09_c_f     = np.empty((len(theta_09), len(phi_09)))
+
+        t0_09_p_n    = np.empty((len(theta_09), len(phi_09)))
+        k_09_p_n     = np.empty((len(theta_09), len(phi_09)))
+        L_09_p_n     = np.empty((len(theta_09), len(phi_09)))
+
+        t0_09_c_n    = np.empty((len(theta_09), len(phi_09)))
+        k_09_c_n     = np.empty((len(theta_09), len(phi_09)))
+        L_09_c_n     = np.empty((len(theta_09), len(phi_09)))
+
+        t0_09_c_t    = np.empty((len(theta_09), len(phi_09)))
+        k_09_c_t     = np.empty((len(theta_09), len(phi_09)))
+        L_09_c_t     = np.empty((len(theta_09), len(phi_09)))
+
+        t0_09_p_t    = np.empty((len(theta_09), len(phi_09)))
+        k_09_p_t     = np.empty((len(theta_09), len(phi_09)))
+        L_09_p_t     = np.empty((len(theta_09), len(phi_09)))
 
         Logistic_bounds_09 = ([0, 0, -10], [0.4, 200, 10])
 
@@ -237,33 +235,32 @@ def fit_D15(time_15,
             theta_15, phi_15, 
             D15 = True, 
             debug = False):
-
-    t0_15_p_f    = np.empty((len(theta_15), len(phi_15)))
-    k_15_p_f     = np.empty((len(theta_15), len(phi_15)))
-    L_15_p_f     = np.empty((len(theta_15), len(phi_15)))
-
-    t0_15_c_f    = np.empty((len(theta_15), len(phi_15)))
-    k_15_c_f     = np.empty((len(theta_15), len(phi_15)))
-    L_15_c_f     = np.empty((len(theta_15), len(phi_15)))
-
-    t0_15_p_n    = np.empty((len(theta_15), len(phi_15)))
-    k_15_p_n     = np.empty((len(theta_15), len(phi_15)))
-    L_15_p_n     = np.empty((len(theta_15), len(phi_15)))
-
-    t0_15_c_n    = np.empty((len(theta_15), len(phi_15)))
-    k_15_c_n     = np.empty((len(theta_15), len(phi_15)))
-    L_15_c_n     = np.empty((len(theta_15), len(phi_15)))
-
-    t0_15_p_t    = np.empty((len(theta_15), len(phi_15)))
-    k_15_p_t     = np.empty((len(theta_15), len(phi_15)))
-    L_15_p_t     = np.empty((len(theta_15), len(phi_15)))
-
-    t0_15_c_t    = np.empty((len(theta_15), len(phi_15)))
-    k_15_c_t     = np.empty((len(theta_15), len(phi_15)))
-    L_15_c_t     = np.empty((len(theta_15), len(phi_15)))
-
-
+     
     if D15:
+
+        t0_15_p_f    = np.empty((len(theta_15), len(phi_15)))
+        k_15_p_f     = np.empty((len(theta_15), len(phi_15)))
+        L_15_p_f     = np.empty((len(theta_15), len(phi_15)))
+
+        t0_15_c_f    = np.empty((len(theta_15), len(phi_15)))
+        k_15_c_f     = np.empty((len(theta_15), len(phi_15)))
+        L_15_c_f     = np.empty((len(theta_15), len(phi_15)))
+
+        t0_15_p_n    = np.empty((len(theta_15), len(phi_15)))
+        k_15_p_n     = np.empty((len(theta_15), len(phi_15)))
+        L_15_p_n     = np.empty((len(theta_15), len(phi_15)))
+
+        t0_15_c_n    = np.empty((len(theta_15), len(phi_15)))
+        k_15_c_n     = np.empty((len(theta_15), len(phi_15)))
+        L_15_c_n     = np.empty((len(theta_15), len(phi_15)))
+
+        t0_15_p_t    = np.empty((len(theta_15), len(phi_15)))
+        k_15_p_t     = np.empty((len(theta_15), len(phi_15)))
+        L_15_p_t     = np.empty((len(theta_15), len(phi_15)))
+
+        t0_15_c_t    = np.empty((len(theta_15), len(phi_15)))
+        k_15_c_t     = np.empty((len(theta_15), len(phi_15)))
+        L_15_c_t     = np.empty((len(theta_15), len(phi_15)))
 
         Logistic_bounds_15 = ([0, 0, -20], [0.8, 200, 20])
 
@@ -432,32 +429,30 @@ def fit_D25(time_25,
             theta_25, phi_25, 
             D25 = True, 
             debug = False):
-        
-    t0_25_p_f    = np.empty((len(theta_25), len(phi_25)))
-    k_25_p_f     = np.empty((len(theta_25), len(phi_25)))
-    L_25_p_f     = np.empty((len(theta_25), len(phi_25)))
-
-    t0_25_c_f    = np.empty((len(theta_25), len(phi_25)))
-    k_25_c_f     = np.empty((len(theta_25), len(phi_25)))
-    L_25_c_f     = np.empty((len(theta_25), len(phi_25)))
-
-    t0_25_p_n    = np.empty((len(theta_25), len(phi_25)))
-    k_25_p_n     = np.empty((len(theta_25), len(phi_25)))
-    L_25_p_n     = np.empty((len(theta_25), len(phi_25)))
-
-    t0_25_c_n    = np.empty((len(theta_25), len(phi_25)))
-    k_25_c_n     = np.empty((len(theta_25), len(phi_25)))
-    L_25_c_n     = np.empty((len(theta_25), len(phi_25)))
-
-    t0_25_p_t    = np.empty((len(theta_25), len(phi_25)))
-    k_25_p_t     = np.empty((len(theta_25), len(phi_25)))
-    L_25_p_t     = np.empty((len(theta_25), len(phi_25)))
-
-    t0_25_c_t    = np.empty((len(theta_25), len(phi_25)))
-    k_25_c_t     = np.empty((len(theta_25), len(phi_25)))
-    L_25_c_t     = np.empty((len(theta_25), len(phi_25)))
-
     if D25:
+        t0_25_p_f    = np.empty((len(theta_25), len(phi_25)))
+        k_25_p_f     = np.empty((len(theta_25), len(phi_25)))
+        L_25_p_f     = np.empty((len(theta_25), len(phi_25)))
+
+        t0_25_c_f    = np.empty((len(theta_25), len(phi_25)))
+        k_25_c_f     = np.empty((len(theta_25), len(phi_25)))
+        L_25_c_f     = np.empty((len(theta_25), len(phi_25)))
+
+        t0_25_p_n    = np.empty((len(theta_25), len(phi_25)))
+        k_25_p_n     = np.empty((len(theta_25), len(phi_25)))
+        L_25_p_n     = np.empty((len(theta_25), len(phi_25)))
+
+        t0_25_c_n    = np.empty((len(theta_25), len(phi_25)))
+        k_25_c_n     = np.empty((len(theta_25), len(phi_25)))
+        L_25_c_n     = np.empty((len(theta_25), len(phi_25)))
+
+        t0_25_p_t    = np.empty((len(theta_25), len(phi_25)))
+        k_25_p_t     = np.empty((len(theta_25), len(phi_25)))
+        L_25_p_t     = np.empty((len(theta_25), len(phi_25)))
+
+        t0_25_c_t    = np.empty((len(theta_25), len(phi_25)))
+        k_25_c_t     = np.empty((len(theta_25), len(phi_25)))
+        L_25_c_t     = np.empty((len(theta_25), len(phi_25)))
 
         Logistic_bounds_25 = ([0, 0, -20], [0.8, 200, 20])
 

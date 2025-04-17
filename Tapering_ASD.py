@@ -170,191 +170,197 @@ def plot_ASD(time_09,
              frequency = 16384,
              f_tail = 1/2,
              output_distance = 1,
+             ASD = True,
              debug = False):      
+    if ASD:
 #######################################################################        
 ### D9.6-3D
 #######################################################################
-    dt = 1 / frequency
-    if debug :
-        print("Extending D9.6-3D")
+        dt = 1 / frequency
+        if debug :
+            print("Extending D9.6-3D")
 
-    hp = hp_t_09[:,phi_ind, theta_ind]
-    hc = hc_t_09[:,phi_ind, theta_ind]
+        hp = hp_t_09[:,phi_ind, theta_ind]
+        hc = hc_t_09[:,phi_ind, theta_ind]
 
-    time_new = np.arange(0,tmax,dt) 
+        time_new = np.arange(0,tmax,dt) 
 
-    hp_ext      = np.zeros(len(time_new))
-    hc_ext      = np.zeros(len(time_new))
-    hp_ext_fit  = np.zeros(len(time_new))
-    hc_ext_fit  = np.zeros(len(time_new))
+        hp_ext      = np.zeros(len(time_new))
+        hc_ext      = np.zeros(len(time_new))
+        hp_ext_fit  = np.zeros(len(time_new))
+        hc_ext_fit  = np.zeros(len(time_new))
 
-    ti, hpp = sn_resample_wave(time_09 / 1000, hp, frequency)
-    ti, hcp = sn_resample_wave(time_09 / 1000, hc, frequency)
+        ti, hpp = sn_resample_wave(time_09 / 1000, hp, frequency)
+        ti, hcp = sn_resample_wave(time_09 / 1000, hc, frequency)
 
-    hp_mem = hp[-1]
-    hc_mem = hc[-1]
- 
-    hp_ext[:len(hpp)] = hpp
-    hc_ext[:len(hcp)] = hcp
-
-    hp_ext[len(hpp):] = 1.0 / 2.0 * (hp_mem + hp_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hpp):]-time_09[-1] / 1000)))
-    hc_ext[len(hcp):] = 1.0 / 2.0 * (hc_mem + hc_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hcp):]-time_09[-1] / 1000)))
+        hp_mem = hp[-1]
+        hc_mem = hc[-1]
     
-    for t in range(len(ti), len(time_new)):
-        if abs(hp_ext[t]) < 0.00001:
-            hp_ext[t:] = 0
-            hc_ext[t:] = 0
-            break
-    f_09, Hp_09 = sn_fft_wave(time_new, hp_ext)
-    f_09, Hc_09 = sn_fft_wave(time_new, hc_ext)
+        hp_ext[:len(hpp)] = hpp
+        hc_ext[:len(hcp)] = hcp
+
+        hp_ext[len(hpp):] = 1.0 / 2.0 * (hp_mem + hp_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hpp):]-time_09[-1] / 1000)))
+        hc_ext[len(hcp):] = 1.0 / 2.0 * (hc_mem + hc_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hcp):]-time_09[-1] / 1000)))
+        
+        for t in range(len(ti), len(time_new)):
+            if abs(hp_ext[t]) < 0.00001:
+                hp_ext[t:] = 0
+                hc_ext[t:] = 0
+                break
+        f_09, Hp_09 = sn_fft_wave(time_new, hp_ext)
+        f_09, Hc_09 = sn_fft_wave(time_new, hc_ext)
 
 #######################################################################        
 ### D15-3D
 #######################################################################
-    if debug :
-        print("Extending D15-3D")
+        if debug :
+            print("Extending D15-3D")
 
-    hp = hp_t_15[:,phi_ind, theta_ind]
-    hc = hc_t_15[:,phi_ind, theta_ind]
+        hp = hp_t_15[:,phi_ind, theta_ind]
+        hc = hc_t_15[:,phi_ind, theta_ind]
 
-    time_new = np.arange(0,tmax,dt) 
+        time_new = np.arange(0,tmax,dt) 
 
-    hp_ext      = np.zeros(len(time_new))
-    hc_ext      = np.zeros(len(time_new))
-    hp_ext_fit  = np.zeros(len(time_new))
-    hc_ext_fit  = np.zeros(len(time_new))
+        hp_ext      = np.zeros(len(time_new))
+        hc_ext      = np.zeros(len(time_new))
+        hp_ext_fit  = np.zeros(len(time_new))
+        hc_ext_fit  = np.zeros(len(time_new))
 
-    ti, hpp = sn_resample_wave(time_15 / 1000, hp, frequency)
-    ti, hcp = sn_resample_wave(time_15 / 1000, hc, frequency)
+        ti, hpp = sn_resample_wave(time_15 / 1000, hp, frequency)
+        ti, hcp = sn_resample_wave(time_15 / 1000, hc, frequency)
 
-    hp_mem = hp[-1]
-    hc_mem = hc[-1]
- 
-    hp_ext[:len(hpp)] = hpp
-    hc_ext[:len(hcp)] = hcp
-
-    hp_ext[len(hpp):] = 1.0 / 2.0 * (hp_mem + hp_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hpp):]-time_15[-1] / 1000)))
-    hc_ext[len(hcp):] = 1.0 / 2.0 * (hc_mem + hc_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hcp):]-time_15[-1] / 1000)))
+        hp_mem = hp[-1]
+        hc_mem = hc[-1]
     
-    for t in range(len(ti), len(time_new)):
-        if abs(hp_ext[t]) < 0.00001:
-            hp_ext[t:] = 0
-            hc_ext[t:] = 0
-            break
+        hp_ext[:len(hpp)] = hpp
+        hc_ext[:len(hcp)] = hcp
 
-    f_15, Hp_15 = sn_fft_wave(time_new, hp_ext)
-    f_15, Hc_15 = sn_fft_wave(time_new, hc_ext)
+        hp_ext[len(hpp):] = 1.0 / 2.0 * (hp_mem + hp_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hpp):]-time_15[-1] / 1000)))
+        hc_ext[len(hcp):] = 1.0 / 2.0 * (hc_mem + hc_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hcp):]-time_15[-1] / 1000)))
+        
+        for t in range(len(ti), len(time_new)):
+            if abs(hp_ext[t]) < 0.00001:
+                hp_ext[t:] = 0
+                hc_ext[t:] = 0
+                break
+
+        f_15, Hp_15 = sn_fft_wave(time_new, hp_ext)
+        f_15, Hc_15 = sn_fft_wave(time_new, hc_ext)
 #######################################################################        
 ### D25-3D
 #######################################################################
 #######################################################################        
 #### Total
 #######################################################################
-    if debug :
-        print("Extending D25-3D")
+        if debug :
+            print("Extending D25-3D")
 
-    hp = hp_t_25[:,phi_ind, theta_ind]
-    hc = hc_t_25[:,phi_ind, theta_ind]
+        hp = hp_t_25[:,phi_ind, theta_ind]
+        hc = hc_t_25[:,phi_ind, theta_ind]
 
-    time_new = np.arange(0,tmax,dt) 
+        time_new = np.arange(0,tmax,dt) 
 
-    hp_ext      = np.zeros(len(time_new))
-    hc_ext      = np.zeros(len(time_new))
-    hp_ext_fit  = np.zeros(len(time_new))
-    hc_ext_fit  = np.zeros(len(time_new))
+        hp_ext      = np.zeros(len(time_new))
+        hc_ext      = np.zeros(len(time_new))
+        hp_ext_fit  = np.zeros(len(time_new))
+        hc_ext_fit  = np.zeros(len(time_new))
 
-    ti, hpp = sn_resample_wave(time_25 / 1000, hp, frequency)
-    ti, hcp = sn_resample_wave(time_25 / 1000, hc, frequency)
+        ti, hpp = sn_resample_wave(time_25 / 1000, hp, frequency)
+        ti, hcp = sn_resample_wave(time_25 / 1000, hc, frequency)
 
-    hp_mem = hp[-1]
-    hc_mem = hc[-1]
- 
-    hp_ext[:len(hpp)] = hpp
-    hc_ext[:len(hcp)] = hcp
-
-    hp_ext[len(hpp):] = 1.0 / 2.0 * (hp_mem + hp_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hpp):]-time_25[-1] / 1000)))
-    hc_ext[len(hcp):] = 1.0 / 2.0 * (hc_mem + hc_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hcp):]-time_25[-1] / 1000)))
+        hp_mem = hp[-1]
+        hc_mem = hc[-1]
     
-    for t in range(len(ti), len(time_new)):
-        if abs(hp_ext[t]) < 0.00001:
-            hp_ext[t:] = 0
-            hc_ext[t:] = 0
-            break
-    
-    f_25, Hp_25 = sn_fft_wave(time_new, hp_ext)
-    f_25, Hc_25 = sn_fft_wave(time_new, hc_ext)
+        hp_ext[:len(hpp)] = hpp
+        hc_ext[:len(hcp)] = hcp
+
+        hp_ext[len(hpp):] = 1.0 / 2.0 * (hp_mem + hp_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hpp):]-time_25[-1] / 1000)))
+        hc_ext[len(hcp):] = 1.0 / 2.0 * (hc_mem + hc_mem * np.cos(2 * np.pi * f_tail * (time_new[len(hcp):]-time_25[-1] / 1000)))
+        
+        for t in range(len(ti), len(time_new)):
+            if abs(hp_ext[t]) < 0.00001:
+                hp_ext[t:] = 0
+                hc_ext[t:] = 0
+                break
+        
+        f_25, Hp_25 = sn_fft_wave(time_new, hp_ext)
+        f_25, Hc_25 = sn_fft_wave(time_new, hc_ext)
 #######################################################################
 ## Paper Total PSD Plots
 #######################################################################   
-    LIGO = np.genfromtxt("Data/Noise/aligo_O4high.txt")
-    LISA = np.genfromtxt("Data/Noise/lisa_noise_curve.dat")
-    ESTS = np.genfromtxt("Data/Noise/ET_D.txt")
-    COEX = np.genfromtxt("Data/Noise/CE1.txt")
+        LIGO = np.genfromtxt("Data/Noise/aligo_O4high.txt")
+        LISA = np.genfromtxt("Data/Noise/lisa_noise_curve.dat")
+        ESTS = np.genfromtxt("Data/Noise/ET_D.txt")
+        COEX = np.genfromtxt("Data/Noise/CE1.txt")
 
 
-    fig, ax = plt.subplots(figsize = (10, 7))
+        fig, ax = plt.subplots(figsize = (10, 7))
 
-    ax.loglog(f_25, abs(Hc_25 * cm2kpc / output_distance) * np.sqrt(f_25))
-    ax.loglog(f_15, abs(Hc_15 * cm2kpc / output_distance) * np.sqrt(f_15))
-    ax.loglog(f_09, abs(Hc_09 * cm2kpc / output_distance) * np.sqrt(f_09))
+        ax.loglog(f_25, abs(Hc_25 * cm2kpc / output_distance) * np.sqrt(f_25))
+        ax.loglog(f_15, abs(Hc_15 * cm2kpc / output_distance) * np.sqrt(f_15))
+        ax.loglog(f_09, abs(Hc_09 * cm2kpc / output_distance) * np.sqrt(f_09))
 
-    ax.loglog(LIGO[:,0], LIGO[:,1], color = "Black")
-    ax.loglog(LISA[:,0], LISA[:,1], color = "Gray")
-    ax.loglog(ESTS[:,0], ESTS[:,1], color = "Red")
-    ax.loglog(COEX[:,0], COEX[:,1], color = "Purple")
+        ax.loglog(LIGO[:,0], LIGO[:,1], color = "Black")
+        ax.loglog(LISA[:,0], LISA[:,1], color = "Gray")
+        ax.loglog(ESTS[:,0], ESTS[:,1], color = "Red")
+        ax.loglog(COEX[:,0], COEX[:,1], color = "Purple")
 
 
-    ax.set_ylabel(r"$\mathrm{ASD \ (Hz^{-1/2})}$")
-    ax.set_xlabel(r"$\mathrm{Freqhency \ (Hz)}$")
+        ax.set_ylabel(r"$\mathrm{ASD \ (Hz^{-1/2})}$")
+        ax.set_xlabel(r"$\mathrm{Freqhency \ (Hz)}$")
 
-    ax.tick_params(axis='x', which='major', pad=10)
+        ax.tick_params(axis='x', which='major', pad=10)
 
-    legend1 = plt.legend([Line2D([0], [0], color="Black", lw=4),
-                          Line2D([0], [0], color="Gray", lw=4),
-                          Line2D([0], [0], color="Red", lw=4),
-                          Line2D([0], [0], color="Purple", lw=4)], 
-                          ["LIGO", "LISA", "Einstein Telescope", "Cosmic Explorer"], 
-                          fontsize = "x-small", 
-                          loc = "lower left", 
-                          ncol = 1, 
-                          bbox_to_anchor = (0.05,0.01), 
-                          frameon = False)
-    legend2 = plt.legend([Line2D([0], [0], color="tab:blue", lw=4),
-                          Line2D([0], [0], color="tab:orange", lw=4),
-                          Line2D([0], [0], color="tab:green", lw=4)], 
-                         ["D25-3D", "D15-3D", "D9.6-3D"], 
-                         fontsize = "x-small", 
-                         loc = "lower left", 
-                         ncol = 1, 
-                         bbox_to_anchor = (0.4,0.01), 
-                         frameon = False)
+        legend1 = plt.legend([Line2D([0], [0], color="Black", lw=4),
+                            Line2D([0], [0], color="Gray", lw=4),
+                            Line2D([0], [0], color="Red", lw=4),
+                            Line2D([0], [0], color="Purple", lw=4)], 
+                            ["LIGO", "LISA", "Einstein Telescope", "Cosmic Explorer"], 
+                            fontsize = "x-small", 
+                            loc = "lower left", 
+                            ncol = 1, 
+                            bbox_to_anchor = (0.05,0.01), 
+                            frameon = False)
+        legend2 = plt.legend([Line2D([0], [0], color="tab:blue", lw=4),
+                            Line2D([0], [0], color="tab:orange", lw=4),
+                            Line2D([0], [0], color="tab:green", lw=4)], 
+                            ["D25-3D", "D15-3D", "D9.6-3D"], 
+                            fontsize = "x-small", 
+                            loc = "lower left", 
+                            ncol = 1, 
+                            bbox_to_anchor = (0.4,0.01), 
+                            frameon = False)
 
-    ax.add_artist(legend1)
+        ax.add_artist(legend1)
 
-    plt.savefig("Images/ASD_paper.png", dpi = 200, bbox_inches = "tight")
-    plt.close()
+        plt.savefig("Images/ASD_paper.png", dpi = 200, bbox_inches = "tight")
+        plt.close()
 
-    snr_LIGO_09 = sn_snr_wave(f_09, Hc_09 * cm2kpc / output_distance, LIGO[:,0], LIGO[:,1])
-    snr_LISA_09 = sn_snr_wave(f_09, Hc_09 * cm2kpc / output_distance, LISA[:,0], LISA[:,1])
-    snr_ESTS_09 = sn_snr_wave(f_09, Hc_09 * cm2kpc / output_distance, ESTS[:,0], ESTS[:,1])
-    snr_COEX_09 = sn_snr_wave(f_09, Hc_09 * cm2kpc / output_distance, COEX[:,0], COEX[:,1])
+        snr_LIGO_09 = sn_snr_wave(f_09, Hc_09 * cm2kpc / output_distance, LIGO[:,0], LIGO[:,1])
+        snr_LISA_09 = sn_snr_wave(f_09, Hc_09 * cm2kpc / output_distance, LISA[:,0], LISA[:,1])
+        snr_ESTS_09 = sn_snr_wave(f_09, Hc_09 * cm2kpc / output_distance, ESTS[:,0], ESTS[:,1])
+        snr_COEX_09 = sn_snr_wave(f_09, Hc_09 * cm2kpc / output_distance, COEX[:,0], COEX[:,1])
 
-    snr_LIGO_15 = sn_snr_wave(f_15, Hc_15 * cm2kpc / output_distance, LIGO[:,0], LIGO[:,1])
-    snr_LISA_15 = sn_snr_wave(f_15, Hc_15 * cm2kpc / output_distance, LISA[:,0], LISA[:,1])
-    snr_ESTS_15 = sn_snr_wave(f_15, Hc_15 * cm2kpc / output_distance, ESTS[:,0], ESTS[:,1])
-    snr_COEX_15 = sn_snr_wave(f_15, Hc_15 * cm2kpc / output_distance, COEX[:,0], COEX[:,1])
+        snr_LIGO_15 = sn_snr_wave(f_15, Hc_15 * cm2kpc / output_distance, LIGO[:,0], LIGO[:,1])
+        snr_LISA_15 = sn_snr_wave(f_15, Hc_15 * cm2kpc / output_distance, LISA[:,0], LISA[:,1])
+        snr_ESTS_15 = sn_snr_wave(f_15, Hc_15 * cm2kpc / output_distance, ESTS[:,0], ESTS[:,1])
+        snr_COEX_15 = sn_snr_wave(f_15, Hc_15 * cm2kpc / output_distance, COEX[:,0], COEX[:,1])
 
-    snr_LIGO_25 = sn_snr_wave(f_25, Hc_25 * cm2kpc / output_distance, LIGO[:,0], LIGO[:,1])
-    snr_LISA_25 = sn_snr_wave(f_25, Hc_25 * cm2kpc / output_distance, LISA[:,0], LISA[:,1])
-    snr_ESTS_25 = sn_snr_wave(f_25, Hc_25 * cm2kpc / output_distance, ESTS[:,0], ESTS[:,1])
-    snr_COEX_25 = sn_snr_wave(f_25, Hc_25 * cm2kpc / output_distance, COEX[:,0], COEX[:,1])
+        snr_LIGO_25 = sn_snr_wave(f_25, Hc_25 * cm2kpc / output_distance, LIGO[:,0], LIGO[:,1])
+        snr_LISA_25 = sn_snr_wave(f_25, Hc_25 * cm2kpc / output_distance, LISA[:,0], LISA[:,1])
+        snr_ESTS_25 = sn_snr_wave(f_25, Hc_25 * cm2kpc / output_distance, ESTS[:,0], ESTS[:,1])
+        snr_COEX_25 = sn_snr_wave(f_25, Hc_25 * cm2kpc / output_distance, COEX[:,0], COEX[:,1])
 
-    print("SNR")
-    print("LIGOo4", "LISA", "ET", "CE")
-    print(np.round(snr_LIGO_09,2), np.round(snr_LISA_09,2), np.round(snr_ESTS_09,2), np.round(snr_COEX_09,2))
-    print(np.round(snr_LIGO_15,2), np.round(snr_LISA_15,2), np.round(snr_ESTS_15,2), np.round(snr_COEX_15,2))
-    print(np.round(snr_LIGO_25,2), np.round(snr_LISA_25,2), np.round(snr_ESTS_25,2), np.round(snr_COEX_25,2))
+        print("SNR")
+        print("LIGOo4", "LISA", "ET", "CE")
+        print(np.round(snr_LIGO_09,2), np.round(snr_LISA_09,2), np.round(snr_ESTS_09,2), np.round(snr_COEX_09,2))
+        print(np.round(snr_LIGO_15,2), np.round(snr_LISA_15,2), np.round(snr_ESTS_15,2), np.round(snr_COEX_15,2))
+        print(np.round(snr_LIGO_25,2), np.round(snr_LISA_25,2), np.round(snr_ESTS_25,2), np.round(snr_COEX_25,2))
 
-    return [[np.round(snr_LIGO_09,2), np.round(snr_LISA_09,2), np.round(snr_ESTS_09,2), np.round(snr_COEX_09,2)],
-            [np.round(snr_LIGO_15,2), np.round(snr_LISA_15,2), np.round(snr_ESTS_15,2), np.round(snr_COEX_15,2)],
-            [np.round(snr_LIGO_25,2), np.round(snr_LISA_25,2), np.round(snr_ESTS_25,2), np.round(snr_COEX_25,2)]]
+        return [[np.round(snr_LIGO_09,2), np.round(snr_LISA_09,2), np.round(snr_ESTS_09,2), np.round(snr_COEX_09,2)],
+                [np.round(snr_LIGO_15,2), np.round(snr_LISA_15,2), np.round(snr_ESTS_15,2), np.round(snr_COEX_15,2)],
+                [np.round(snr_LIGO_25,2), np.round(snr_LISA_25,2), np.round(snr_ESTS_25,2), np.round(snr_COEX_25,2)]]
+    else:
+        return[[None, None, None, None],
+               [None, None, None, None],
+               [None, None, None, None]]
