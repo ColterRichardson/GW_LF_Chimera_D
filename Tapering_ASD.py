@@ -317,7 +317,7 @@ def plot_ASD(time_09,
                           fontsize = "x-small", 
                           loc = "lower left", 
                           ncol = 1, 
-                          bbox_to_anchor = (0.1,0.08), 
+                          bbox_to_anchor = (0.05,0.01), 
                           frameon = False)
     legend2 = plt.legend([Line2D([0], [0], color="tab:blue", lw=4),
                           Line2D([0], [0], color="tab:orange", lw=4),
@@ -326,7 +326,7 @@ def plot_ASD(time_09,
                          fontsize = "x-small", 
                          loc = "lower left", 
                          ncol = 1, 
-                         bbox_to_anchor = (0.4,0.1), 
+                         bbox_to_anchor = (0.4,0.01), 
                          frameon = False)
 
     ax.add_artist(legend1)

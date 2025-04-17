@@ -39,7 +39,6 @@ def Logistic(x, x0, k, L):
 def fit_D96(time_09, 
             hp_f_09, hc_f_09, 
             hp_n_09, hc_n_09, 
-            hp_t_09, hc_t_09, 
             theta_09, phi_09, 
             D96 = True, 
             debug = False):
@@ -235,7 +234,6 @@ def fit_D96(time_09,
 def fit_D15(time_15, 
             hp_f_15, hc_f_15, 
             hp_n_15, hc_n_15, 
-            hp_t_15, hc_t_15, 
             theta_15, phi_15, 
             D15 = True, 
             debug = False):
@@ -431,7 +429,6 @@ def fit_D15(time_15,
 def fit_D25(time_25, 
             hp_f_25, hc_f_25, 
             hp_n_25, hc_n_25, 
-            hp_t_25, hc_t_25, 
             theta_25, phi_25, 
             D25 = True, 
             debug = False):

@@ -24,8 +24,8 @@ from matplotlib.lines import Line2D
 #######################################################################
 custom_lines = [Line2D([0], [0], color="tab:blue", lw=4),
                 Line2D([0], [0], color="tab:orange", lw=4),
+                Line2D([0], [0], color="tab:green", lw=4),
                 Line2D([0], [0], color="tab:red", lw=4),
-                Line2D([0], [0], color="tab:purple", lw=4),
                 Line2D([0], [0], color="Black", lw=4)]
 
 custom_lines_style = [Line2D([0], [0], ls = "-", color="Black", lw=4),
@@ -92,13 +92,13 @@ def plot_Ani_D96(time_09,
 
             ax[1].plot(time_09, hp_n_09[:,36,0,0], ls = "-", color = "tab:blue", alpha = 0.5)
             ax[1].plot(time_09, hp_n_09[:,36,0,1], ls = "-", color = "tab:orange", alpha = 0.5)
-            ax[1].plot(time_09, hp_n_09[:,36,0,2], ls = "-", color = "tab:red", alpha = 0.5)
-            ax[1].plot(time_09, hp_n_09[:,36,0,3], ls = "-", color = "tab:purple", alpha = 0.5)
+            ax[1].plot(time_09, hp_n_09[:,36,0,2], ls = "-", color = "tab:green", alpha = 0.5)
+            ax[1].plot(time_09, hp_n_09[:,36,0,3], ls = "-", color = "tab:red", alpha = 0.5)
 
             ax[1].plot(time_09, hc_n_09[:,36,0,0], ls = "--", color = "tab:blue", alpha = 0.5)
             ax[1].plot(time_09, hc_n_09[:,36,0,1], ls = "--", color = "tab:orange", alpha = 0.5)
-            ax[1].plot(time_09, hc_n_09[:,36,0,2], ls = "--", color = "tab:red", alpha = 0.5)
-            ax[1].plot(time_09, hc_n_09[:,36,0,3], ls = "--", color = "tab:purple", alpha = 0.5)
+            ax[1].plot(time_09, hc_n_09[:,36,0,2], ls = "--", color = "tab:green", alpha = 0.5)
+            ax[1].plot(time_09, hc_n_09[:,36,0,3], ls = "--", color = "tab:red", alpha = 0.5)
 
             ax[1].plot(time_09, hp_n_09[:,36,0,4], ls = "-", color = "Black")
             ax[1].plot(time_09, hc_n_09[:,36,0,4], ls = "--", color = "Black")
@@ -120,13 +120,13 @@ def plot_Ani_D96(time_09,
 
             ax[0].plot(time_09, ap_09[:,36,0,0], ls = "-", color = "tab:blue", alpha = 0.5)
             ax[0].plot(time_09, ap_09[:,36,0,1], ls = "-", color = "tab:orange", alpha = 0.5)
-            ax[0].plot(time_09, ap_09[:,36,0,2], ls = "-", color = "tab:red", alpha = 0.5)
-            ax[0].plot(time_09, ap_09[:,36,0,3], ls = "-", color = "tab:purple", alpha = 0.5)
+            ax[0].plot(time_09, ap_09[:,36,0,2], ls = "-", color = "tab:green", alpha = 0.5)
+            ax[0].plot(time_09, ap_09[:,36,0,3], ls = "-", color = "tab:red", alpha = 0.5)
 
             ax[0].plot(time_09, ac_09[:,36,0,0]+0.05, ls = "--", color = "tab:blue", alpha = 0.5)
             ax[0].plot(time_09, ac_09[:,36,0,1]+0.05, ls = "--", color = "tab:orange", alpha = 0.5)
-            ax[0].plot(time_09, ac_09[:,36,0,2]+0.05, ls = "--", color = "tab:red", alpha = 0.5)
-            ax[0].plot(time_09, ac_09[:,36,0,3]+0.05, ls = "--", color = "tab:purple", alpha = 0.5)
+            ax[0].plot(time_09, ac_09[:,36,0,2]+0.05, ls = "--", color = "tab:green", alpha = 0.5)
+            ax[0].plot(time_09, ac_09[:,36,0,3]+0.05, ls = "--", color = "tab:red", alpha = 0.5)
 
             ax[0].plot(time_09, ap_09[:,36,0,4], ls = "-", color = "Black")
             ax[0].plot(time_09, ac_09[:,36,0,4]+0.05, ls = "--", color = "Black")
@@ -143,8 +143,8 @@ def plot_Ani_D96(time_09,
 
         ax.plot(time_09, LN_09[:,0], ls = "-", color = "tab:blue", alpha = 0.5)
         ax.plot(time_09, LN_09[:,1], ls = "-", color = "tab:orange", alpha = 0.5)
-        ax.plot(time_09, LN_09[:,2], ls = "-", color = "tab:red", alpha = 0.5)
-        ax.plot(time_09, LN_09[:,3], ls = "-", color = "tab:purple", alpha = 0.5)
+        ax.plot(time_09, LN_09[:,2], ls = "-", color = "tab:green", alpha = 0.5)
+        ax.plot(time_09, LN_09[:,3], ls = "-", color = "tab:red", alpha = 0.5)
 
         ax.plot(time_09, LN_09[:,4], ls = "-", color = "Black")
 
@@ -160,6 +160,59 @@ def plot_Ani_D96(time_09,
 
 
         plt.savefig("Images/Waveforms/D9.6-3D-500km_luminosity.png", dpi = 300, bbox_inches = "tight")
+        plt.close()
+
+        ap_09_max = np.zeros((len(time_09), 5))
+        ap_09_min = np.zeros((len(time_09), 5))
+        ac_09_max = np.zeros((len(time_09), 5))
+        ac_09_min = np.zeros((len(time_09), 5))
+        if debug :
+            print("Begin D9.6-3D Min-Max Anisotropy Plots")
+        for t in range(len(time_09)):
+            for i in range(5):
+                ap_09_max[t,i] = np.max(ap_09[t,:,:,i])
+                ap_09_min[t,i] = np.min(ap_09[t,:,:,i]) 
+                ac_09_max[t,i] = np.max(ac_09[t,:,:,i]) 
+                ac_09_min[t,i] = np.min(ac_09[t,:,:,i]) 
+
+        fig, ax = plt.subplots(2,1,figsize = (10,14), sharex = True)
+
+        ax[0].plot(time_09, ap_09_max[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_09, ap_09_min[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_09, ap_09_max[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_09, ap_09_min[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_09, ap_09_max[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_09, ap_09_min[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_09, ap_09_max[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_09, ap_09_min[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_09, ap_09_max[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_09, ap_09_min[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+
+        ax[1].plot(time_09, ac_09_max[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_09, ac_09_min[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_09, ac_09_max[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_09, ac_09_min[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_09, ac_09_max[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_09, ac_09_min[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_09, ac_09_max[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_09, ac_09_min[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_09, ac_09_max[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_09, ac_09_min[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+
+        ax[1].set_xlabel(r"$\mathrm{ Time \ Post \ Bounce \ (ms)}$")
+        ax[0].set_ylabel(r"$\mathrm{\alpha_{+}}$")
+        ax[1].set_ylabel(r"$\mathrm{\alpha_{\times}}$")
+
+        legend1 = ax[0].legend(custom_lines, [r"$\mathrm{\nu_{e}}$", r"$\mathrm{\bar{\nu}_{e}}$", 
+                                            r"$\mathrm{\nu_{x}}$", r"$\mathrm{\bar{\nu}_{x}}$", 
+                                            r"$\mathrm{\sum_{i} \nu_{i}}$"], 
+                            fontsize = "x-small", loc = "center", ncol = 1, 
+                            bbox_to_anchor = (0.1,0.8), frameon = False)
+        
+        plt.subplots_adjust(hspace = 0.0)
+
+        plt.savefig("Images/Waveforms/D9.6-3D_anisotropy.png", 
+                    dpi = 200, bbox_inches = "tight")
         plt.close() 
  
     return None
@@ -186,13 +239,13 @@ def plot_Ani_D15(time_15,
 
             ax[1].plot(time_15, hp_n_15[:,36,0,0], ls = "-", color = "tab:blue", alpha = 0.5)
             ax[1].plot(time_15, hp_n_15[:,36,0,1], ls = "-", color = "tab:orange", alpha = 0.5)
-            ax[1].plot(time_15, hp_n_15[:,36,0,2], ls = "-", color = "tab:red", alpha = 0.5)
-            ax[1].plot(time_15, hp_n_15[:,36,0,3], ls = "-", color = "tab:purple", alpha = 0.5)
+            ax[1].plot(time_15, hp_n_15[:,36,0,2], ls = "-", color = "tab:green", alpha = 0.5)
+            ax[1].plot(time_15, hp_n_15[:,36,0,3], ls = "-", color = "tab:red", alpha = 0.5)
 
             ax[1].plot(time_15, hc_n_15[:,36,0,0], ls = "--", color = "tab:blue", alpha = 0.5)
             ax[1].plot(time_15, hc_n_15[:,36,0,1], ls = "--", color = "tab:orange", alpha = 0.5)
-            ax[1].plot(time_15, hc_n_15[:,36,0,2], ls = "--", color = "tab:red", alpha = 0.5)
-            ax[1].plot(time_15, hc_n_15[:,36,0,3], ls = "--", color = "tab:purple", alpha = 0.5)
+            ax[1].plot(time_15, hc_n_15[:,36,0,2], ls = "--", color = "tab:green", alpha = 0.5)
+            ax[1].plot(time_15, hc_n_15[:,36,0,3], ls = "--", color = "tab:red", alpha = 0.5)
 
             ax[1].plot(time_15, hp_n_15[:,36,0,4], ls = "-", color = "Black")
             ax[1].plot(time_15, hc_n_15[:,36,0,4], ls = "--", color = "Black")
@@ -214,13 +267,13 @@ def plot_Ani_D15(time_15,
 
             ax[0].plot(time_15, ap_15[:,36,0,0], ls = "-", color = "tab:blue", alpha = 0.5)
             ax[0].plot(time_15, ap_15[:,36,0,1], ls = "-", color = "tab:orange", alpha = 0.5)
-            ax[0].plot(time_15, ap_15[:,36,0,2], ls = "-", color = "tab:red", alpha = 0.5)
-            ax[0].plot(time_15, ap_15[:,36,0,3], ls = "-", color = "tab:purple", alpha = 0.5)
+            ax[0].plot(time_15, ap_15[:,36,0,2], ls = "-", color = "tab:green", alpha = 0.5)
+            ax[0].plot(time_15, ap_15[:,36,0,3], ls = "-", color = "tab:red", alpha = 0.5)
 
             ax[0].plot(time_15, ac_15[:,36,0,0]+0.1, ls = "--", color = "tab:blue", alpha = 0.5)
             ax[0].plot(time_15, ac_15[:,36,0,1]+0.1, ls = "--", color = "tab:orange", alpha = 0.5)
-            ax[0].plot(time_15, ac_15[:,36,0,2]+0.1, ls = "--", color = "tab:red", alpha = 0.5)
-            ax[0].plot(time_15, ac_15[:,36,0,3]+0.1, ls = "--", color = "tab:purple", alpha = 0.5)
+            ax[0].plot(time_15, ac_15[:,36,0,2]+0.1, ls = "--", color = "tab:green", alpha = 0.5)
+            ax[0].plot(time_15, ac_15[:,36,0,3]+0.1, ls = "--", color = "tab:red", alpha = 0.5)
 
             ax[0].plot(time_15, ap_15[:,36,0,4], ls = "-", color = "Black")
             ax[0].plot(time_15, ac_15[:,36,0,4]+0.1, ls = "--", color = "Black")
@@ -237,8 +290,8 @@ def plot_Ani_D15(time_15,
 
         ax.plot(time_15, LN_15[:,0], ls = "-", color = "tab:blue", alpha = 0.5)
         ax.plot(time_15, LN_15[:,1], ls = "-", color = "tab:orange", alpha = 0.5)
-        ax.plot(time_15, LN_15[:,2], ls = "-", color = "tab:red", alpha = 0.5)
-        ax.plot(time_15, LN_15[:,3], ls = "-", color = "tab:purple", alpha = 0.5)
+        ax.plot(time_15, LN_15[:,2], ls = "-", color = "tab:green", alpha = 0.5)
+        ax.plot(time_15, LN_15[:,3], ls = "-", color = "tab:red", alpha = 0.5)
 
         ax.plot(time_15, LN_15[:,4], ls = "-", color = "Black")
 
@@ -255,6 +308,59 @@ def plot_Ani_D15(time_15,
 
         plt.savefig("Images/Waveforms/D15-3D-500km_luminosity.png", dpi = 300, bbox_inches = "tight")
         plt.close() 
+
+        ap_15_max = np.zeros((len(time_15), 5))
+        ap_15_min = np.zeros((len(time_15), 5))
+        ac_15_max = np.zeros((len(time_15), 5))
+        ac_15_min = np.zeros((len(time_15), 5))
+        if debug :
+            print("Begin D15-3D Min-Max Anisotropy Plots")
+        for t in range(len(time_15)):
+            for i in range(5):
+                ap_15_max[t,i] = np.max(ap_15[t,:,:,i])
+                ap_15_min[t,i] = np.min(ap_15[t,:,:,i]) 
+                ac_15_max[t,i] = np.max(ac_15[t,:,:,i]) 
+                ac_15_min[t,i] = np.min(ac_15[t,:,:,i]) 
+                
+        fig, ax = plt.subplots(2,1,figsize = (10,14), sharex = True)
+
+        ax[0].plot(time_15, ap_15_max[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_15, ap_15_min[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_15, ap_15_max[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_15, ap_15_min[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_15, ap_15_max[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_15, ap_15_min[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_15, ap_15_max[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_15, ap_15_min[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_15, ap_15_max[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_15, ap_15_min[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+
+        ax[1].plot(time_15, ac_15_max[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_15, ac_15_min[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_15, ac_15_max[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_15, ac_15_min[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_15, ac_15_max[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_15, ac_15_min[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_15, ac_15_max[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_15, ac_15_min[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_15, ac_15_max[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_15, ac_15_min[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+
+        ax[1].set_xlabel(r"$\mathrm{ Time \ Post \ Bounce \ (ms)}$")
+        ax[0].set_ylabel(r"$\mathrm{\alpha_{+}}$")
+        ax[1].set_ylabel(r"$\mathrm{\alpha_{\times}}$")
+
+        legend1 = ax[0].legend(custom_lines, [r"$\mathrm{\nu_{e}}$", r"$\mathrm{\bar{\nu}_{e}}$", 
+                                            r"$\mathrm{\nu_{x}}$", r"$\mathrm{\bar{\nu}_{x}}$", 
+                                            r"$\mathrm{\sum_{i} \nu_{i}}$"], 
+                            fontsize = "x-small", loc = "center", ncol = 1, 
+                            bbox_to_anchor = (0.1,0.8), frameon = False)
+        
+        plt.subplots_adjust(hspace = 0.0)
+
+        plt.savefig("Images/Waveforms/D15-3D_anisotropy.png", 
+                    dpi = 200, bbox_inches = "tight")
+        plt.close()
  
     return None
 #######################################################################        
@@ -280,13 +386,13 @@ def plot_Ani_D25(time_25,
 
             ax[1].plot(time_25, hp_n_25[:,36,0,0], ls = "-", color = "tab:blue", alpha = 0.5)
             ax[1].plot(time_25, hp_n_25[:,36,0,1], ls = "-", color = "tab:orange", alpha = 0.5)
-            ax[1].plot(time_25, hp_n_25[:,36,0,2], ls = "-", color = "tab:red", alpha = 0.5)
-            ax[1].plot(time_25, hp_n_25[:,36,0,3], ls = "-", color = "tab:purple", alpha = 0.5)
+            ax[1].plot(time_25, hp_n_25[:,36,0,2], ls = "-", color = "tab:green", alpha = 0.5)
+            ax[1].plot(time_25, hp_n_25[:,36,0,3], ls = "-", color = "tab:red", alpha = 0.5)
 
             ax[1].plot(time_25, hc_n_25[:,36,0,0], ls = "--", color = "tab:blue", alpha = 0.5)
             ax[1].plot(time_25, hc_n_25[:,36,0,1], ls = "--", color = "tab:orange", alpha = 0.5)
-            ax[1].plot(time_25, hc_n_25[:,36,0,2], ls = "--", color = "tab:red", alpha = 0.5)
-            ax[1].plot(time_25, hc_n_25[:,36,0,3], ls = "--", color = "tab:purple", alpha = 0.5)
+            ax[1].plot(time_25, hc_n_25[:,36,0,2], ls = "--", color = "tab:green", alpha = 0.5)
+            ax[1].plot(time_25, hc_n_25[:,36,0,3], ls = "--", color = "tab:red", alpha = 0.5)
 
             ax[1].plot(time_25, hp_n_25[:,36,0,4], ls = "-", color = "Black")
             ax[1].plot(time_25, hc_n_25[:,36,0,4], ls = "--", color = "Black")
@@ -308,13 +414,13 @@ def plot_Ani_D25(time_25,
 
             ax[0].plot(time_25, ap_25[:,36,0,0], ls = "-", color = "tab:blue", alpha = 0.5)
             ax[0].plot(time_25, ap_25[:,36,0,1], ls = "-", color = "tab:orange", alpha = 0.5)
-            ax[0].plot(time_25, ap_25[:,36,0,2], ls = "-", color = "tab:red", alpha = 0.5)
-            ax[0].plot(time_25, ap_25[:,36,0,3], ls = "-", color = "tab:purple", alpha = 0.5)
+            ax[0].plot(time_25, ap_25[:,36,0,2], ls = "-", color = "tab:green", alpha = 0.5)
+            ax[0].plot(time_25, ap_25[:,36,0,3], ls = "-", color = "tab:red", alpha = 0.5)
 
             ax[0].plot(time_25, ac_25[:,36,0,0]+0.1, ls = "--", color = "tab:blue", alpha = 0.5)
             ax[0].plot(time_25, ac_25[:,36,0,1]+0.1, ls = "--", color = "tab:orange", alpha = 0.5)
-            ax[0].plot(time_25, ac_25[:,36,0,2]+0.1, ls = "--", color = "tab:red", alpha = 0.5)
-            ax[0].plot(time_25, ac_25[:,36,0,3]+0.1, ls = "--", color = "tab:purple", alpha = 0.5)
+            ax[0].plot(time_25, ac_25[:,36,0,2]+0.1, ls = "--", color = "tab:green", alpha = 0.5)
+            ax[0].plot(time_25, ac_25[:,36,0,3]+0.1, ls = "--", color = "tab:red", alpha = 0.5)
 
             ax[0].plot(time_25, ap_25[:,36,0,4], ls = "-", color = "Black")
             ax[0].plot(time_25, ac_25[:,36,0,4]+0.1, ls = "--", color = "Black")
@@ -331,8 +437,8 @@ def plot_Ani_D25(time_25,
 
         ax.plot(time_25, LN_25[:,0], ls = "-", color = "tab:blue", alpha = 0.5)
         ax.plot(time_25, LN_25[:,1], ls = "-", color = "tab:orange", alpha = 0.5)
-        ax.plot(time_25, LN_25[:,2], ls = "-", color = "tab:red", alpha = 0.5)
-        ax.plot(time_25, LN_25[:,3], ls = "-", color = "tab:purple", alpha = 0.5)
+        ax.plot(time_25, LN_25[:,2], ls = "-", color = "tab:green", alpha = 0.5)
+        ax.plot(time_25, LN_25[:,3], ls = "-", color = "tab:red", alpha = 0.5)
 
         ax.plot(time_25, LN_25[:,4], ls = "-", color = "Black")
 
@@ -349,5 +455,58 @@ def plot_Ani_D25(time_25,
 
         plt.savefig("Images/Waveforms/D25-3D-500km_luminosity.png", dpi = 300, bbox_inches = "tight")
         plt.close() 
+
+        ap_25_max = np.zeros((len(time_25), 5))
+        ap_25_min = np.zeros((len(time_25), 5))
+        ac_25_max = np.zeros((len(time_25), 5))
+        ac_25_min = np.zeros((len(time_25), 5))
+        if debug :
+            print("Begin D25-3D Min-Max Anisotropy Plots")
+        for t in range(len(time_25)):
+            for i in range(5):
+                ap_25_max[t,i] = np.max(ap_25[t,:,:,i])
+                ap_25_min[t,i] = np.min(ap_25[t,:,:,i]) 
+                ac_25_max[t,i] = np.max(ac_25[t,:,:,i]) 
+                ac_25_min[t,i] = np.min(ac_25[t,:,:,i]) 
+                
+        fig, ax = plt.subplots(2,1,figsize = (10,14), sharex = True)
+
+        ax[0].plot(time_25, ap_25_max[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_25, ap_25_min[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_25, ap_25_max[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_25, ap_25_min[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_25, ap_25_max[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_25, ap_25_min[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_25, ap_25_max[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_25, ap_25_min[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_25, ap_25_max[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+        ax[0].plot(time_25, ap_25_min[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+
+        ax[1].plot(time_25, ac_25_max[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_25, ac_25_min[:,0], color = "tab:blue", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_25, ac_25_max[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_25, ac_25_min[:,1], color = "tab:orange", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_25, ac_25_max[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_25, ac_25_min[:,2], color = "tab:green", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_25, ac_25_max[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_25, ac_25_min[:,3], color = "tab:red", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_25, ac_25_max[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+        ax[1].plot(time_25, ac_25_min[:,4], color = "Black", alpha = 0.5, ls = "", marker = ".")
+
+        ax[1].set_xlabel(r"$\mathrm{ Time \ Post \ Bounce \ (ms)}$")
+        ax[0].set_ylabel(r"$\mathrm{\alpha_{+}}$")
+        ax[1].set_ylabel(r"$\mathrm{\alpha_{\times}}$")
+
+        legend1 = ax[0].legend(custom_lines, [r"$\mathrm{\nu_{e}}$", r"$\mathrm{\bar{\nu}_{e}}$", 
+                                            r"$\mathrm{\nu_{x}}$", r"$\mathrm{\bar{\nu}_{x}}$", 
+                                            r"$\mathrm{\sum_{i} \nu_{i}}$"], 
+                            fontsize = "x-small", loc = "center", ncol = 1, 
+                            bbox_to_anchor = (0.1,0.8), frameon = False)
+        
+        plt.subplots_adjust(hspace = 0.0)
+
+        plt.savefig("Images/Waveforms/D25-3D_anisotropy.png", 
+                    dpi = 200, bbox_inches = "tight")
+        plt.close()
  
     return None
